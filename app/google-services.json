@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "110992125738",
+    "project_id": "fingerprint-based-voting-eb0f4",
+    "storage_bucket": "fingerprint-based-voting-eb0f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110992125738:android:568890980d6b16ac327853",
+        "android_client_info": {
+          "package_name": "com.example.fingerprintbasedvoting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110992125738-bbu4pkkpnesa2811hp9heh5skpo2a68a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fingerprintbasedvoting",
+            "certificate_hash": "73848ec797d3b14f4bae13c8ad9f10f16ce6653d"
+          }
+        },
+        {
+          "client_id": "110992125738-afpfbc9sbhav4fpt4b3qkno8ctiinoqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlaXIK_-5duFAsfrrBA0FKdI3ZAgEXG78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110992125738-afpfbc9sbhav4fpt4b3qkno8ctiinoqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

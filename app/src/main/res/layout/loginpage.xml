@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_qimg_567547c3fb3bec0c506ae6069e9471d9_lq"
+    android:orientation="vertical"
+    android:padding="20sp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10sp"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            >
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/loginimg"
+                android:contentDescription="@string/todo">
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginTop="20sp"
+            android:layout_weight="0.4"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:textSize="50sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_login_credentials_correctly"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20sp"
+            />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/uname"
+                android:hint="@string/email"
+                android:gravity="center"
+                android:layout_marginTop="20sp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/black"
+                android:importantForAutofill="no"
+                android:textSize="22sp"
+                android:inputType="textEmailAddress"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pwd"
+                android:importantForAutofill="no"
+                android:hint="@string/password"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:backgroundTint="@color/black"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:inputType="textPassword"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginbtn"
+                android:layout_marginTop="30dp"
+                android:text="@string/login"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/signupbtn"
+                android:layout_marginTop="20dp"
+                android:text="@string/signup"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
