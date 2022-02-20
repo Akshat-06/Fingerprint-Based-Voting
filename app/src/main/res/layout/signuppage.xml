@@ -99,7 +99,7 @@
                 android:gravity="center"
                 android:hint="@string/email"
                 android:importantForAutofill="no"
-                android:inputType="textPassword"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="22sp"

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         void openVote(){
-            startActivity(new Intent(getApplicationContext(),signuppage.class));
+            startActivity(new Intent(getApplicationContext(),votingsystem.class));
             finish();
         }
 

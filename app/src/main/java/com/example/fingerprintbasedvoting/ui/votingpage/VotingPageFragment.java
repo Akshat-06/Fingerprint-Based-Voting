@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import com.example.fingerprintbasedvoting.databinding.FragmentVotingpageBinding;
 
 public class VotingPageFragment extends Fragment {
-    
 
     private FragmentVotingpageBinding binding;
 
