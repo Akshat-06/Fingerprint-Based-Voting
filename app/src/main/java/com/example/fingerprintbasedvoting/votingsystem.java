@@ -18,8 +18,8 @@ import com.example.fingerprintbasedvoting.databinding.ActivityVotingsystemBindin
 
 public class votingsystem extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityVotingsystemBinding binding;
+    AppBarConfiguration mAppBarConfiguration;
+    ActivityVotingsystemBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

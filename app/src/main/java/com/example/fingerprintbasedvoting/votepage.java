@@ -18,7 +18,5 @@ public class votepage extends AppCompatActivity {
 
         submtbtn.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), submitresult.class)));
 
-
-
     }
 }

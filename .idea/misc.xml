@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1305" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/checkbox.xml" value="0.208" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/ic_homeimg_background.xml" value="0.1005" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1545" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1445" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/drawable/layout_bg.xml" value="0.162" />
@@ -19,30 +21,40 @@
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/activity_homepage_voting.xml" value="0.16460025651988028" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/activity_main_drawer.xml" value="0.11468721668177698" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/activity_voting_system.xml" value="0.25" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/activity_votingsystem.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/app_bar_homepage.xml" value="0.25" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/app_bar_homepage1.xml" value="0.1115140525838622" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/app_bar_homepage_voting.xml" value="0.16460025651988028" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/app_bar_voting_system.xml" value="0.11468721668177698" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/app_bar_votingsystem.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/content_homepage.xml" value="0.11514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/content_homepage1.xml" value="0.1115140525838622" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/content_homepage_voting.xml" value="0.1115140525838622" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/content_voting_system.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/content_votingsystem.xml" value="0.11650045330915684" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_account.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_home.xml" value="0.11514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_item.xml" value="0.11514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_item_list.xml" value="0.33" />
-        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_registerfngerprint.xml" value="0.11196736174070716" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_register_fingerprint.xml" value="0.1" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_registerfngerprint.xml" value="0.16" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_slideshow.xml" value="0.11514052583862194" />
-        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_votingpage.xml" value="0.1" />
-        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/homepage.xml" value="0.22" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_voting_page.xml" value="0.11468721668177698" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_votingpage.xml" value="0.22" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/homepage.xml" value="0.2" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/login.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/loginpage.xml" value="0.2" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/main_nav_drawer.xml" value="0.11468721668177698" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/main_toolbar.xml" value="0.12" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/nav_header_homepage.xml" value="0.11514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/nav_header_homepage1.xml" value="0.11514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/nav_header_homepage_voting.xml" value="0.16460025651988028" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/nav_header_voting_system.xml" value="0.11468721668177698" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/nav_header_votingsystem.xml" value="0.25" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/nav_layout.xml" value="0.11468721668177698" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signsuc.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signupfrag.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signupfrag1.xml" value="0.16417272338606242" />
@@ -50,14 +62,17 @@
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signuppage1.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signuppage2.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/submitresult.xml" value="0.1441523118766999" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votecategory.xml" value="0.11468721668177698" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votepage.xml" value="0.1514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/voterpage.xml" value="0.25" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votingpage.xml" value="0.16" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/activity_homepage1_drawer.xml" value="0.5" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/homepage.xml" value="0.16460025651988028" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/homepage1.xml" value="0.16460025651988028" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/homepage_voting.xml" value="0.16460025651988028" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/navigation_menu.xml" value="0.16460025651988028" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/voting_system.xml" value="0.16460025651988028" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/menu/votingsystem.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/mipmap-anydpi-v26/ic_homeimg.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/mipmap-anydpi-v26/ic_homeimg_round.xml" value="0.1145" />

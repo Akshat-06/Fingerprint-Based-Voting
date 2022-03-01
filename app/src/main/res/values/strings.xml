@@ -57,4 +57,7 @@
     <string name="vote_submitted">Vote Submitted</string>
     <string name="return_to_homepage">Return to Homepage</string>
     <string name="title_activity_votingsystem">votingsystem</string>
+    <string name="voting_page">Voting page</string>
+    <string name="menu_home">menu home</string>
+    <string name="camera">Camera</string>
 </resources>
