@@ -43,7 +43,7 @@
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_registerfngerprint.xml" value="0.16" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_slideshow.xml" value="0.11514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_voting_page.xml" value="0.11468721668177698" />
-        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_votingpage.xml" value="0.22" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/fragment_votingpage.xml" value="0.18" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/homepage.xml" value="0.2" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/login.xml" value="0.1" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/loginpage.xml" value="0.2" />
@@ -62,7 +62,7 @@
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signuppage1.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/signuppage2.xml" value="0.16417272338606242" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/submitresult.xml" value="0.1441523118766999" />
-        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votecategory.xml" value="0.11468721668177698" />
+        <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votecategory.xml" value="0.25" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votepage.xml" value="0.1514052583862194" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/voterpage.xml" value="0.25" />
         <entry key="..\:/Users/aksha/StudioProjects/FingerprintBasedVoting/app/src/main/res/layout/votingpage.xml" value="0.16" />

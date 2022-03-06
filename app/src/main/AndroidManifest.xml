@@ -55,6 +55,9 @@
             android:name=".ui.registerfingerprint.cam"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"
             android:parentActivityName="votingsystem"/>
+        <activity android:name=".ui.votingpage.vote"
+            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"
+            android:parentActivityName=".votingsystem"/>
     </application>
 
 </manifest>

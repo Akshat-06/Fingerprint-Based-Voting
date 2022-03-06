@@ -15,6 +15,6 @@ public class submitresult extends AppCompatActivity {
 
         Button button = findViewById(R.id.smbthome);
 
-        button.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), homepage.class)));
+        button.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), votingsystem.class)));
     }
 }

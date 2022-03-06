@@ -9,12 +9,10 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.fingerprintbasedvoting.R;
 import com.example.fingerprintbasedvoting.databinding.FragmentVotingpageBinding;
-import com.example.fingerprintbasedvoting.votepage;
 
 public class VotingPageFragment extends Fragment {
 
@@ -36,17 +34,16 @@ public class VotingPageFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-}
 
-class votingsystem extends AppCompatActivity{
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Button btn = findViewById(R.id.sbmt);
-        btn.setOnClickListener(view -> openVerify()) ;
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button button = view.findViewById(R.id.nextbutton);
+        button.setOnClickListener(view1 -> openvote());
     }
-    void openVerify(){
-        Intent intent = new Intent(votingsystem.this, votepage.class);
-        startActivity(intent);
+    void openvote(){
+        startActivity(new Intent(getContext(),vote.class));
     }
 }

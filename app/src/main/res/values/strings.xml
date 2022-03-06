@@ -60,4 +60,5 @@
     <string name="voting_page">Voting page</string>
     <string name="menu_home">menu home</string>
     <string name="camera">Camera</string>
+    <string name="proceed_to_voting">Proceed to Voting</string>
 </resources>

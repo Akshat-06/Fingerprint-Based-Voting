@@ -1,5 +1,6 @@
 package com.example.fingerprintbasedvoting;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,16 +14,22 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class signuppage extends AppCompatActivity
 {
 
     private EditText eml, pass, pass1, nme, adhr, phon;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    ProgressDialog progressDialog;
+    private Button registerButton;
 
     @Override
     protected void onStart() {
-        //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
         super.onStart();
 
     }
@@ -40,11 +47,14 @@ public class signuppage extends AppCompatActivity
         adhr = findViewById(R.id.aadhar);
         phon = findViewById(R.id.pho);
 
-        Button bck = findViewById(R.id.back);
+//        Button bck = findViewById(R.id.back);
 
-        Button btn = findViewById(R.id.reg);
+        registerButton = findViewById(R.id.reg);
 
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        progressDialog = new ProgressDialog(this);
 
         FirebaseApp.initializeApp(this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
@@ -52,14 +62,14 @@ public class signuppage extends AppCompatActivity
                 SafetyNetAppCheckProviderFactory.getInstance());
 
 
-        btn.setOnClickListener(view -> register());
-        bck.setOnClickListener(view -> openMain());
+        registerButton.setOnClickListener(view -> register());
+//        bck.setOnClickListener(view -> openMain());
     }
 
-    void openMain(){
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        finish();
-    }
+//    void openMain(){
+//        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//        finish();
+//    }
 
     private void register() {
 
@@ -120,31 +130,49 @@ public class signuppage extends AppCompatActivity
 
     private void authenticate(){
 
-        String email = eml.getText().toString().trim();
-        String password = pass.getText().toString().trim();
+        String email = eml.getText().toString();
+        String password = pass.getText().toString();
+        String fname = nme.getText().toString();
+        String aadhar = adhr.getText().toString();
+        String phone = phon.getText().toString();
 
-        if (mAuth.getCurrentUser() != null)
-        {
-            startActivity(new Intent(getApplicationContext(), votingsystem.class));
-            finish();
-        }
-        else
-        {
-            mAuth.createUserWithEmailAndPassword(email, password).
-                    addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(this, "Register success", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(),loginpage.class));
-                            finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(signuppage.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+        progressDialog.setTitle("Sing in");
+        progressDialog.setMessage("Plz wait");
+        progressDialog.show();
 
+        firebaseAuth.createUserWithEmailAndPassword(email, password).
+                addOnCompleteListener(this, task ->
+                {
+                    if (task.isSuccessful())
+                    {
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("fname", fname);
+                        map.put("adharno", aadhar);
+                        map.put("phoneno", phone);
+                        map.put("email", email);
+                        map.put("password", password);
+
+                        firebaseDatabase.getReference("User Data").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(map).addOnCompleteListener(task1 ->
+                        {
+                            if(task1.isSuccessful())
+                            {
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(signuppage.this, "Register success", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(signuppage.this, loginpage.class));
+                                finish();
+                            }
+                            progressDialog.dismiss();
+                        }).addOnFailureListener(e -> Toast.makeText(signuppage.this, "something went wrong: "+ e.getMessage(), Toast.LENGTH_LONG).show());
+
+                    }
+                    else
+                    {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(signuppage.this, "Authentication failed."+ task.getException().getMessage(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                    progressDialog.dismiss();
+                });
     }
 }
 
