@@ -12,11 +12,16 @@ public class votepage extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.voterpage);
+        setContentView(R.layout.votepage);
 
         Button submtbtn = findViewById(R.id.sbmtvote);
 
-        submtbtn.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), submitresult.class)));
+        submtbtn.setOnClickListener(view -> startsbmitvote());
 
+    }
+    void startsbmitvote()
+    {
+        startActivity(new Intent(getApplicationContext(), submitresult.class));
+        finish();
     }
 }

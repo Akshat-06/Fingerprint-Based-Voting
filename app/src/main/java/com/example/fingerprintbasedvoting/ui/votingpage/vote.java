@@ -22,6 +22,8 @@ public class vote extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         Button button = findViewById(R.id.sbmt);
         button.setOnClickListener(view1 -> openVerify());
+
+
     }
 
     void openVerify() {

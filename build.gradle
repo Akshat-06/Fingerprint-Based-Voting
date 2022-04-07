@@ -4,10 +4,13 @@ buildscript {
 
         google()
         mavenCentral()
+        maven { url "https://chaquo.com/maven" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.2'
         classpath 'com.google.gms:google-services:4.3.10'
+        classpath "com.chaquo.python:gradle:11.0.0"
+
     }
 }
 
@@ -21,6 +24,7 @@ allprojects {
         //mavenLocal() must be listed at the top to facilitate testing gmavenLocal()
         google()
         mavenCentral()
+        maven { url "https://jitpack.io"}
     }
 }
 

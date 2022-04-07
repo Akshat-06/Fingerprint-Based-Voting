@@ -27,22 +27,19 @@ public class RegisterFingerprintFragment extends Fragment
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Button button = view.findViewById(R.id.camera_button);
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        startActivity(new Intent(getContext(),cam.class));
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button button = view.findViewById(R.id.registerfingerbutton);
+        button.setOnClickListener(view1 -> openvote());
+    }
+    void openvote(){
+        startActivity(new Intent(getContext(), Cam.class));
     }
 
 }

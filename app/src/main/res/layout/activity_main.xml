@@ -1,94 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_qimg_567547c3fb3bec0c506ae6069e9471d9_lq"
-    android:padding="20sp"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-            <ImageView
-                android:layout_width="200sp"
-                android:layout_height="200sp"
-                android:background="@drawable/pngfind_com_fingerprint_png_475800"
-                android:scaleType="center"
-                android:adjustViewBounds="true"
-                android:gravity="center"
-                android:backgroundTintMode="screen"
-                android:contentDescription="@string/todo"
-                />
-    </RelativeLayout>
+    tools:context=".MainActivity"
+    android:padding="5sp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:gravity="center"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200sp"
+            android:layout_height="200sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40sp"
+            android:adjustViewBounds="true"
+            android:backgroundTintMode="screen"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/icons8_elections_100"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/fingerprint_based_voting"
+            android:textSize="40sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        >
+        android:padding="10sp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10sp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:padding="10sp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10sp"
-                android:text="@string/fingerprint_based_voting"
-                android:textColor="@color/black"
-                android:textSize="50sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:weightSum="0.6"
-            android:layout_weight="0.5"
-            android:padding="10sp"
+        <Button
+            android:id="@+id/loginpgbtn"
             android:layout_marginTop="30sp"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_to_account"
+            android:textSize="17sp"
+            android:layout_marginBottom="20sp"
+            android:background="@drawable/button"
+            />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/login_to_account"
-                android:layout_margin="20sp"
-                android:textSize="17sp"
-                android:id="@+id/loginpgbtn"
-                />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/new_user_registration"
-                android:layout_margin="20sp"
-                android:textSize="17sp"
-                android:id="@+id/signuppgbtn"
-                />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/vote_page"
-                android:layout_margin="20sp"
-                android:textSize="17sp"
-                android:id="@+id/vote"
-                />
-        </LinearLayout>
+        <Button
+            android:id="@+id/signuppgbtn"
+            android:layout_width="wrap_content"
+            android:background="@drawable/button"
+            android:layout_marginTop="20sp"
+            android:layout_height="wrap_content"
+            android:text="@string/new_user_registration"
+            android:textSize="17sp" />
 
     </LinearLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
