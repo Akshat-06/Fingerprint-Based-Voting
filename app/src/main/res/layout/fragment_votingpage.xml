@@ -9,14 +9,16 @@
         android:id="@+id/viewhomepage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
         android:padding="20sp">
         <Button
             android:id="@+id/nextbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/proceed_to_voting"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
+            android:background="@drawable/button"
             />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

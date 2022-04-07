@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_qimg_567547c3fb3bec0c506ae6069e9471d9_lq"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
@@ -13,18 +12,18 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="30sp"
-        android:textColor="@color/black"
         android:layout_gravity="center_vertical"
         android:text="@string/vote_submitted"/>
 
     <Button
-        android:id="@+id/smbthome"
+        android:id="@+id/rtnhome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="20sp"
+        android:background="@drawable/button"
         android:textSize="20sp"
         android:layout_gravity="center_vertical"
-        android:text="@string/return_to_homepage"/>
+        android:text="@string/verify_fingerprint"/>
 
 </LinearLayout>

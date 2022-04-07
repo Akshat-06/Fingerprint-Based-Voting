@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class signuppage extends AppCompatActivity
 {
@@ -25,7 +27,8 @@ public class signuppage extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     ProgressDialog progressDialog;
-    private Button registerButton;
+    Button registerButton;
+    TextView loginButton;
 
     @Override
     protected void onStart() {
@@ -50,6 +53,7 @@ public class signuppage extends AppCompatActivity
 //        Button bck = findViewById(R.id.back);
 
         registerButton = findViewById(R.id.reg);
+        loginButton = findViewById(R.id.logintext);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -58,22 +62,19 @@ public class signuppage extends AppCompatActivity
 
         FirebaseApp.initializeApp(this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
-        firebaseAppCheck.installAppCheckProviderFactory(
-                SafetyNetAppCheckProviderFactory.getInstance());
-
+        firebaseAppCheck.installAppCheckProviderFactory(SafetyNetAppCheckProviderFactory.getInstance());
 
         registerButton.setOnClickListener(view -> register());
-//        bck.setOnClickListener(view -> openMain());
+        loginButton.setOnClickListener(view -> loginintent());
     }
 
-//    void openMain(){
-//        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-//        finish();
-//    }
-
-    private void register() {
-
-
+    void loginintent()
+    {
+        startActivity(new Intent(getApplicationContext(), loginpage.class));
+        finish();
+    }
+    private void register()
+    {
         String email = eml.getText().toString();
         String password = pass.getText().toString();
         String password1 = pass1.getText().toString();
@@ -83,42 +84,52 @@ public class signuppage extends AppCompatActivity
 
         if (fname.isEmpty())
         {
+            nme.setError("Name field empty");
             Toast.makeText(this, "Enter Name", Toast.LENGTH_SHORT).show();
         }
         else if(aadhar.isEmpty())
         {
+            adhr.setError("Aadhar card field empty");
             Toast.makeText(this, "Enter Aadhar card No", Toast.LENGTH_SHORT).show();
         }
-        else if (aadhar.length()!=10)
+        else if (aadhar.length()!=12)
         {
+            adhr.setError("Invalid aadhar card no");
             Toast.makeText(this, "Enter Valid Aadhar card No", Toast.LENGTH_SHORT).show();
         }
         else if (phone.isEmpty())
         {
+            phon.setError("Phone no field empty");
             Toast.makeText(this, "Enter Phone No", Toast.LENGTH_SHORT).show();
         }
         else if (phone.length()!=10)
         {
+            phon.setError("Invalid phone no");
             Toast.makeText(this, "Improper Phone No", Toast.LENGTH_SHORT).show();
         }
         else if (email.isEmpty())
         {
+            eml.setError("Empty Email field");
             Toast.makeText(this, "Email field if empty", Toast.LENGTH_SHORT).show();
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
+            eml.setError("Invalid Email Address");
             Toast.makeText(this, "Improper Email Address", Toast.LENGTH_SHORT).show();
         }
         else if (password.isEmpty())
         {
+            pass.setError("Empty Password field");
             Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
         }
         else if (!password1.equals(password))
         {
+            pass1.setError("Password does not match");
             Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show();
         }
         else if (password.length() < 6)
         {
+            pass.setError("Invalid Password Length");
             Toast.makeText(this, "Password Length is less than 6 char", Toast.LENGTH_SHORT).show();
         }
         else
@@ -126,7 +137,7 @@ public class signuppage extends AppCompatActivity
             authenticate();
         }
 
-        }
+    }
 
     private void authenticate(){
 
@@ -152,23 +163,21 @@ public class signuppage extends AppCompatActivity
                         map.put("email", email);
                         map.put("password", password);
 
-                        firebaseDatabase.getReference("User Data").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(map).addOnCompleteListener(task1 ->
+                        firebaseDatabase.getReference("User Data").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(map).addOnCompleteListener(task1 ->
                         {
-                            if(task1.isSuccessful())
-                            {
+                            if (task1.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(signuppage.this, "Register success", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(signuppage.this, loginpage.class));
                                 finish();
                             }
                             progressDialog.dismiss();
-                        }).addOnFailureListener(e -> Toast.makeText(signuppage.this, "something went wrong: "+ e.getMessage(), Toast.LENGTH_LONG).show());
-
+                        }).addOnFailureListener(e -> Toast.makeText(signuppage.this, "something went wrong: " + e.getMessage(), Toast.LENGTH_LONG).show());
                     }
                     else
                     {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(signuppage.this, "Authentication failed."+ task.getException().getMessage(),
+                        Toast.makeText(signuppage.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                 Toast.LENGTH_LONG).show();
                     }
                     progressDialog.dismiss();

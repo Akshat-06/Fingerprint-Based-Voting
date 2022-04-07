@@ -4,8 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <queries>
         <intent>
@@ -20,20 +25,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FingerprintBasedVoting">
+
         <activity
-            android:name=".votingsystem"
-            android:exported="false"
-            android:label="@string/title_activity_votingsystem"
-            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar">
+            android:name=".StartScreen"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.example.fingerprintbasedvoting.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
+        <activity android:name=".MainActivity"
+            android:noHistory="true"
+            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
+
+        <activity
+            android:name=".votingsystem"
+            android:exported="false"
+            android:label="@string/title_activity_votingsystem"
+            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
             android:name=".loginpage"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
@@ -41,23 +61,26 @@
             android:name=".signuppage"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
         <activity
-            android:name=".homepage"
-            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
-        <activity
             android:name=".submitresult"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"
-            android:parentActivityName=".homepage" />
+            />
         <activity
             android:name=".votepage"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"
-            android:parentActivityName=".homepage" />
+            />
+        <activity android:name=".ui.Fingerrecognition"
+            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
         <activity
-            android:name=".ui.registerfingerprint.cam"
+            android:name=".ui.registerfingerprint.Cam"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"
             android:parentActivityName="votingsystem"/>
         <activity android:name=".ui.votingpage.vote"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"
             android:parentActivityName=".votingsystem"/>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
     </application>
 
 </manifest>

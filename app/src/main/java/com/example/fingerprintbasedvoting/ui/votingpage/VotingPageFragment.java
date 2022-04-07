@@ -42,8 +42,10 @@ public class VotingPageFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button button = view.findViewById(R.id.nextbutton);
         button.setOnClickListener(view1 -> openvote());
+
     }
-    void openvote(){
+    void openvote()
+    {
         startActivity(new Intent(getContext(),vote.class));
     }
 }

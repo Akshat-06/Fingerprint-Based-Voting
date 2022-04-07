@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class loginpage extends AppCompatActivity {
         pass = findViewById(R.id.pwd);
 
         Button button1 = findViewById(R.id.loginbtn);
-        Button button2 = findViewById(R.id.signupbtn);
+        TextView button2 = findViewById(R.id.signuptext);
 
         button1.setOnClickListener(view -> Login());
         button2.setOnClickListener(view -> openSignup());
@@ -87,10 +88,9 @@ public class loginpage extends AppCompatActivity {
         else
         {
             mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
-
+                if (task.isSuccessful())
+                {
                     BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(getApplicationContext()).setTitle("Verify Your Fingerprint").setNegativeButton("cancel", getMainExecutor(), (dialogInterface, i) -> Toast.makeText(loginpage.this, "Authentication Cancelled", Toast.LENGTH_SHORT).show()).build();
-
                     // start the authenticationCallback in
                     // mainExecutor
                     biometricPrompt.authenticate(
@@ -98,10 +98,6 @@ public class loginpage extends AppCompatActivity {
                             getMainExecutor(),
                             authenticationCallback);
                     Toast.makeText(loginpage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-
-
-
-
                 }
                 else
                 {
@@ -122,6 +118,7 @@ public class loginpage extends AppCompatActivity {
 
     public void openSignup(){
         startActivity(new Intent(getApplicationContext(),signuppage.class));
+        finish();
     }
 
 }

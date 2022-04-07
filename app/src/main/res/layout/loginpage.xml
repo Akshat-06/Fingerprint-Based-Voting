@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_qimg_567547c3fb3bec0c506ae6069e9471d9_lq"
     android:orientation="vertical"
     android:padding="20sp"
     >
@@ -47,7 +46,6 @@
                 android:text="@string/login"
                 android:textSize="50sp"
                 android:gravity="center"
-                android:textColor="@color/black"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -55,7 +53,6 @@
                 android:text="@string/enter_login_credentials_correctly"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textColor="@color/black"
                 android:layout_marginTop="20sp"
             />
 
@@ -67,8 +64,6 @@
                 android:hint="@string/email"
                 android:gravity="center"
                 android:layout_marginTop="20sp"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black"
                 android:backgroundTint="@color/black"
                 android:importantForAutofill="no"
                 android:textSize="22sp"
@@ -80,8 +75,6 @@
                 android:id="@+id/pwd"
                 android:importantForAutofill="no"
                 android:hint="@string/password"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:backgroundTint="@color/black"
                 android:gravity="center"
                 android:textSize="22sp"
@@ -90,16 +83,29 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button"
                 android:id="@+id/loginbtn"
                 android:layout_marginTop="30dp"
-                android:text="@string/login"/>
+                android:text="@string/login"
+                android:textSize="17sp"
+                />
 
-            <Button
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/signupbtn"
-                android:layout_marginTop="20dp"
-                android:text="@string/signup"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="30sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/signuptext"
+                    android:text="@string/new_user_registration1"
+                    android:textSize="17sp"
+                    android:textColor="#DA00FE"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

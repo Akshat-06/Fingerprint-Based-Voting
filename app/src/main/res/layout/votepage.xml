@@ -1,63 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="30sp"
+    android:orientation="vertical"
+    android:layout_margin="5sp"
+    android:background="@drawable/layout_bg1">
 
-    <LinearLayout
-
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/layout_bg1"
-        android:layout_margin="5sp"
-        android:padding="30sp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:id="@+id/candvote"
+        android:paddingTop="10sp"
         >
 
-        <TextView
+        <RadioButton
+            android:layout_marginTop="5sp"
+            android:textSize="25sp"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:button="@drawable/radiocircle"
             android:textColor="@color/black"
-            android:text="@string/select_one_of_vote_category"
-            />
+            android:text="@string/candidate1"/>
 
-        <RadioGroup
+        <RadioButton
+            android:layout_marginTop="5sp"
+            android:textSize="25sp"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:weightSum="1"
-            >
+            android:textColor="@color/black"
+            android:button="@drawable/radiocircle"
+            android:text="@string/candidate2"/>
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/category_1"
-                android:id="@+id/radioButton"
-                android:textColor="@color/black"
-                android:button="@drawable/checkbox"
-                android:checked="false"
-                android:textSize="25sp" />
-
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/category_2"
-                android:id="@+id/radioButton2"
-                android:layout_marginTop="10sp"
-                android:button="@drawable/checkbox"
-                android:textColor="@color/black"
-                android:checked="false"
-                android:textSize="25sp"
-                android:layout_weight="0.13" />
-        </RadioGroup>
-
-        <Button
+        <RadioButton
+            android:layout_marginTop="5sp"
+            android:textSize="25sp"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/submit"
-            android:layout_marginTop="20sp"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
+            android:textColor="@color/black"
+            android:button="@drawable/radiocircle"
+            android:text="@string/candidate3"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioButton
+            android:layout_marginTop="5sp"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:button="@drawable/radiocircle"
+            android:text="@string/candidate4"/>
+
+        <RadioButton
+            android:layout_marginTop="5sp"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:button="@drawable/radiocircle"
+            android:text="@string/candidate5"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/sbmtvote"
+        android:layout_marginTop="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_vote"
+        android:layout_below="@id/candvote"
+        />
+
+</RelativeLayout>
