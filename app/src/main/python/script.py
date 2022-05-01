@@ -2,59 +2,66 @@ import cv2
 import base64
 import numpy as np
 
-def main(data):
+
+def main(data, data1):
 
     decode_data = base64.b64decode(data)
-    np_data = np.fromstring(decode_data,np.uint8)
-    img = cv2.imdecode(np_data,cv2.IMREAD_UNCHANGED)
+    np_data = np.fromstring(decode_data, np.uint8)
+    sample1 = cv2.imdecode(np_data, cv2.IMREAD_UNCHANGED)
+    print("data of image 1")
 
-    width = 350
-    height = 450
-    dim = (width, height)
+    print('Original Dimensions of 1 : ', sample1.shape)
 
-    # resize image
-    img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+    decode_data2 = base64.b64decode(data1)
+    np_data1 = np.fromstring(decode_data2, np.uint8)
+    sample2 = cv2.imdecode(np_data1, cv2.IMREAD_UNCHANGED)
+    print("data of image 2")
+
+    print('Original Dimensions of 2: ', sample2.shape)
 
     best_score = 0
-    image = None
-    kp1, kp2, mp, tg = None, None, None, None
 
+    try:
+        sift = cv2.SIFT_create()
 
-    fingerprint_image = cv2.imread("app/src/main/python/orig2/leftmiddle.bmp")
+        keypoints_1, descriptors_1 = sift.detectAndCompute(sample1, None)
+        keypoints_2, descriptors_2 = sift.detectAndCompute(sample2, None)
 
-    sift = cv2.SIFT_create()
+        matches1 = cv2.FlannBasedMatcher({'algorithm': 1, 'trees': 10}, {}).knnMatch(descriptors_1, descriptors_2, k=2)
 
-    keypoints_1, descriptors_1 = sift.detectAndCompute(img, None)
-    keypoints_2, descriptors_2 = sift.detectAndCompute(img, None)
+        bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck=False)
 
-    matches1 = cv2.FlannBasedMatcher({'algorithm': 1, 'trees': 10}, {}).knnMatch(descriptors_1, descriptors_2, k=2)
+        # Perform the matching between the SIFT descriptors of the training image and the test image
+        matches = bf.match(descriptors_1, descriptors_2)
 
-    bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck=False)
+        # The matches with shorter distance are the ones we want.
+        matches = sorted(matches, key=lambda x: x.distance)
+        #
+        # mat = len(matches)
+        # print(mat)
 
-    # Perform the matching between the SIFT descriptors of the training image and the test image
-    matches = bf.match(descriptors_1, descriptors_2)
+        match_points = []
 
-    # The matches with shorter distance are the ones we want.
-    matches = sorted(matches, key=lambda x: x.distance)
+        for p, q in matches1:
+            if p.distance < 0.9*q.distance:
+                match_points.append([p])
+                print("for Loop")
 
-    match_points = []
+        if len(keypoints_1) < len(keypoints_2):
+            keypoints = len(keypoints_1)
+            print("Keypoint 1:" + str(keypoints))
+        else:
+            keypoints = len(keypoints_2)
+            print("Keypoint 2:" + str(keypoints))
 
-    for p, q in matches1:
-        if p.distance < 0.1 * q.distance:
-            match_points.append(p)
-
-    keypoints = 0
-    if len(keypoints_1) < len(keypoints_2):
-        keypoints = len(keypoints_1)
-    else:
-        keypoints = len(keypoints_2)
-
-    if len(match_points) / keypoints * 100 > best_score:
-        best_score = len(match_points) / keypoints * 100
-        image = fingerprint_image
-        kp1, kp2, mp = keypoints_1, keypoints_2, match_points
-        return "Verified"
-    else:
-        print("No Fingerprint Match Found")
-        return "Not Verified"
-
+        if len(match_points)/keypoints*100 > 10:
+            best_score = len(match_points)/keypoints*100
+            print("Match Score:" + str(best_score))
+            print(len(match_points))
+            return "verified"
+        else:
+            print(len(match_points))
+            print("No Fingerprint Match Found")
+            return "Not Verified"
+    except:
+        return "unable to detect fingerprint or insufficient memory"

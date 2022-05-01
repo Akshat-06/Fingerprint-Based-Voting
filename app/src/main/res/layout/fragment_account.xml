@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,36 +10,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
+        android:id="@+id/profileloading"
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:text="@string/name"
-            android:textSize="30sp"
             />
 
         <TextView
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/fname"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/aadhar_no"
-            android:textSize="30sp"
+            android:textSize="25sp"
             />
+
         <TextView
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/adharnoprofile"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/phone_no"
-            android:textSize="30sp"
+            android:textSize="25sp"
             />
+
         <TextView
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/phonenoprofile"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textSize="30sp"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/emailprofile"
             />
 
         <Button
@@ -47,7 +82,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
             android:text="@string/logout"
+            android:textSize="23sp"
+            android:background="@drawable/button"
             android:id="@+id/logoutbtn" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

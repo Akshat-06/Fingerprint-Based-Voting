@@ -5,7 +5,7 @@
     <string name="new_user_registration">New User Registration</string>
     <string name="login_to_account">Login to account</string>
     <string name="enter_login_credentials_correctly">Enter login credentials correctly</string>
-    <string name="email">E-mail</string>
+    <string name="email">E-mail:</string>
     <string name="password">Password</string>
     <string name="signup">Signup</string>
     <string name="enter_details_correctly">Enter details correctly</string>
@@ -14,8 +14,8 @@
     <string name="sign_up_success">Sign up success</string>
     <string name="welcome_to_voting_app">Welcome to voting app</string>
     <string name="fullname">Fullname</string>
-    <string name="aadhar_no">Aadhar No</string>
-    <string name="phone_no">Phone No</string>
+    <string name="aadhar_no">Aadhar No:</string>
+    <string name="phone_no">Phone No:</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="select_one_of_vote_category">Select one of Vote Category</string>
@@ -68,4 +68,18 @@
     <string name="log_in"><u>Log-In</u></string>
     <string name="already_registered">Already Registered ?</string>
     <string name="new_user_registration1"><u>New User Registration</u></string>
+    <string name="category_3">Category 3</string>
+    <string name="select_one_candidate">Select One Candidate</string>
+    <string name="title_activity_cropper_image">CropperImage</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+    <string name="replace_Text">This Will Replace Once Verified</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="crop_image">Crop Image</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="fingerprint_verified">Fingerprint Verified</string>
+    <string name="confirm_voting">Confirm Voting</string>
 </resources>

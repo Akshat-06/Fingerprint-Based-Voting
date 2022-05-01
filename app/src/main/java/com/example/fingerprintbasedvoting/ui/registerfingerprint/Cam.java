@@ -1,7 +1,6 @@
 package com.example.fingerprintbasedvoting.ui.registerfingerprint;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,18 +15,22 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.example.fingerprintbasedvoting.CustomProgressBar;
 import com.example.fingerprintbasedvoting.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Cam extends AppCompatActivity {
@@ -37,11 +40,11 @@ public class Cam extends AppCompatActivity {
     StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Fingerprint Data/User/");
     ActivityResultLauncher<Intent> displayimage;
     Intent camera_intent;
-    Uri imageuri;
+    Uri imageuri, imageuri1;
     File photoFile = null;
     String[] PERMISSION;
-//    ProgressBar progressBar;
-    ProgressDialog progressDialog;
+    CustomProgressBar prog_bar;
+    UCrop.Options options = new UCrop.Options();
     File image = null;
 
     @Override
@@ -59,8 +62,7 @@ public class Cam extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
                 };
 
-        progressDialog = new ProgressDialog(this);
-//        progressBar = findViewById(R.id.progressbar);
+        prog_bar = new CustomProgressBar(Cam.this);
 
         camera_open_id.setOnClickListener(view -> CameraImageCapture());
 
@@ -69,31 +71,39 @@ public class Cam extends AppCompatActivity {
         displayimage = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->
         {
             Toast.makeText(this, "Activity result", Toast.LENGTH_SHORT).show();
-            display_image_id.setImageURI(imageuri);
-            if (result.getResultCode() == RESULT_OK && result.getData() != null)
+            display_image_id.setImageURI(imageuri1);
+
+            if (result != null)
             {
-                if (imageuri == null) {
-                    Toast.makeText(this, "Error Retrieving Image", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    display_image_id.setImageURI(imageuri);
-                    Toast.makeText(this, (CharSequence) imageuri, Toast.LENGTH_SHORT).show();
-                }
+                UCrop.of(imageuri, imageuri)
+                        .withOptions(options)
+                        .withAspectRatio(0, 0)
+                        .start(Cam.this);
             }
         });
    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            if (data != null)
+            {
+                display_image_id.setImageURI(imageuri);
+            }
+        }
+    }
 
-   void CameraImageCapture()
+
+    void CameraImageCapture()
    {
        camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
        if (!hasPermission(Cam.this,PERMISSION))
        {
            ActivityCompat.requestPermissions(Cam.this, PERMISSION, PERMISSION_ALL);
        }
-
-       photoFile = createImageFile();
+      photoFile = createImageFile();
 
        if (photoFile != null)
        {
@@ -133,11 +143,13 @@ public class Cam extends AppCompatActivity {
     private File createImageFile()
     {
         // Create an image file name
-        String imageFileName = "Image";
+        String imageFileName = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        try {
+        try
+        {
+            storageDir.mkdirs();
             image = File.createTempFile(imageFileName, ".bmp", storageDir);
-            imageuri = Uri.parse(image.getAbsolutePath());
+            imageuri = Uri.fromFile(image);
         }
         catch (IOException e)
         {
@@ -148,26 +160,28 @@ public class Cam extends AppCompatActivity {
 
     void upload()
     {
+        if (image == null)
+        {
+            return;
+        }
 
         Uri file = Uri.fromFile(image);
 
         UploadTask uploadTask = storageRef.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).putFile(file);
 
-        progressDialog.setTitle("Uploading Image");
-        progressDialog.setMessage("Plz wait it could take a while");
-        progressDialog.show();
+        prog_bar.show();
         uploadTask.addOnSuccessListener(taskSnapshot ->
         {
             Toast.makeText(this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
             display_image_id = null;
             finish();
 //            startActivity(new Intent(getApplicationContext(), Cam.class));
-            progressDialog.dismiss();
+            prog_bar.cancel();
         });
         uploadTask.addOnFailureListener(exception ->
         {
             Toast.makeText(this, "Upload Failed, Try Again", Toast.LENGTH_SHORT).show();
-            progressDialog.dismiss();
+            prog_bar.cancel();
         });
     }
 

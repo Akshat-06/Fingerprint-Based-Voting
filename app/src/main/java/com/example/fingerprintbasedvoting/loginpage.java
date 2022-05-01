@@ -22,6 +22,7 @@ public class loginpage extends AppCompatActivity {
     private EditText eml, pass;
     private FirebaseAuth mAuth;
     private BiometricPrompt.AuthenticationCallback authenticationCallback;
+    CustomProgressBar prog_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +39,13 @@ public class loginpage extends AppCompatActivity {
         button1.setOnClickListener(view -> Login());
         button2.setOnClickListener(view -> openSignup());
 
+        prog_bar = new CustomProgressBar(loginpage.this);
+
         mAuth = FirebaseAuth.getInstance();
 
 
-        authenticationCallback = new BiometricPrompt.AuthenticationCallback() {
+        authenticationCallback = new BiometricPrompt.AuthenticationCallback()
+        {
             @Override
             public void onAuthenticationError(int errorCode, CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
@@ -66,6 +70,7 @@ public class loginpage extends AppCompatActivity {
 
     public void Login()
     {
+
         String email, password;
         email = eml.getText().toString();
         password = pass.getText().toString();
@@ -87,9 +92,11 @@ public class loginpage extends AppCompatActivity {
         }
         else
         {
+            prog_bar.show();
             mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                 if (task.isSuccessful())
                 {
+                    prog_bar.cancel();
                     BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(getApplicationContext()).setTitle("Verify Your Fingerprint").setNegativeButton("cancel", getMainExecutor(), (dialogInterface, i) -> Toast.makeText(loginpage.this, "Authentication Cancelled", Toast.LENGTH_SHORT).show()).build();
                     // start the authenticationCallback in
                     // mainExecutor
@@ -101,11 +108,11 @@ public class loginpage extends AppCompatActivity {
                 }
                 else
                 {
+                    prog_bar.cancel();
                     Toast.makeText(loginpage.this, "Login Error"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
-
 
     }
 

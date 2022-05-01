@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/viewhomepage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5sp"
+        android:orientation="vertical"
+        android:padding="30sp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_one_of_vote_category"
+            android:textSize="30sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:weightSum="1">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@drawable/checkbox"
+                android:textAlignment="center"
+                android:checked="false"
+                android:text="@string/category_1"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:textAlignment="center"
+                android:button="@drawable/checkbox"
+                android:checked="false"
+                android:text="@string/category_2"
+                android:textSize="25sp"
+                />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:button="@drawable/checkbox"
+                android:checked="false"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:layout_marginTop="10sp"
+                android:text="@string/category_3"
+                />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/sbmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/button"
+            android:text="@string/submit"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

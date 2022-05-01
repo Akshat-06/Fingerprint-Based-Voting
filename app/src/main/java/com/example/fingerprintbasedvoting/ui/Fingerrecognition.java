@@ -1,7 +1,6 @@
 package com.example.fingerprintbasedvoting.ui;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,8 +9,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,28 +29,40 @@ import androidx.core.content.FileProvider;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
+import com.example.fingerprintbasedvoting.CustomProgressBar;
 import com.example.fingerprintbasedvoting.R;
+import com.example.fingerprintbasedvoting.votingsystem;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Fingerrecognition extends AppCompatActivity {
 
     static final int camera_permission = 1, external_storage = 2, PERMISSION_ALL =  3 ;
-  //  StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Fingerprint Data/User/");
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Fingerprint Data/User/"+ FirebaseAuth.getInstance().getUid());
     ActivityResultLauncher<Intent> displayimage;
     Intent camera_intent;
     Uri imageuri;
+    int flag =0;
     File photoFile = null;
     String[] PERMISSION;
-    //    ProgressBar progressBar;
+    CustomProgressBar prog_bar;
     File image = null;
-    Button camerabutton, verify;
-    ImageView imagedisplay;
+    Button camerabutton, verify, confirm_voting;
+    String encode;
+    ImageView imagedisplay, firebasedisplay;
     TextView textView;
-    Bitmap bitmap;
-    String imageString, str = "working on verifying";
+    Bitmap bitmap, bitmap1;
+    Uri uri;
+    String imageString, imageString1, str = "working on verifying";
+    UCrop.Options options = new UCrop.Options();
+    File localFile = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -61,54 +74,150 @@ public class Fingerrecognition extends AppCompatActivity {
         camerabutton = findViewById(R.id.cambutton);
         verify = findViewById(R.id.verifyfinger);
         textView = findViewById(R.id.replacetext);
+        firebasedisplay = findViewById(R.id.firebaseimage);
+        confirm_voting = findViewById(R.id.verifyvoting);
+
+        prog_bar = new CustomProgressBar(Fingerrecognition.this);
 
         PERMISSION = new String[] {
                 Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
 
+        confirm_voting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flag == 1)
+                {
+                    startActivity(new Intent(Fingerrecognition.this, Verified.class));
+                    finishAffinity();
+                }
+            }
+        });
+        retriveimage();
+
+        firebasedisplay.setImageURI(uri);
+
         camerabutton.setOnClickListener(view -> CameraImageCapture());
 
         verify.setOnClickListener(v -> verify());
+        String str = "working on verifying";
+        if (Objects.equals(textView, str))
+        {
+            startActivity(new Intent(Fingerrecognition.this,Verified.class));
+        }
 
         displayimage = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->
         {
             Toast.makeText(this, "Activity result", Toast.LENGTH_SHORT).show();
-            imagedisplay.setImageURI(imageuri);
-            if (result.getResultCode() == RESULT_OK && result.getData() != null)
+//            imagedisplay.setImageURI(imageuri);
+            if (result != null)
             {
-                if (imageuri == null) {
-                    Toast.makeText(this, "Error Retrieving Image", Toast.LENGTH_SHORT).show();
-                }
-                else
+                UCrop.of(imageuri, imageuri)
+                        .withOptions(options)
+                        .withAspectRatio(0, 0)
+                        .start(Fingerrecognition.this);
+
+//                imagedisplay.setImageURI(imageuri);
+            }
+            else
+            {
+                Toast.makeText(this, "Error Retrieving Image", Toast.LENGTH_SHORT).show();
+            }
+            });
+
+        if (flag == 1)
+        {
+            startActivity(new Intent(Fingerrecognition.this,Verified.class));
+        }
+        else {
+            Toast.makeText(this, "Flag:" +flag, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP)
+        {
+            if (data != null)
+            {
+                Uri resulturi = UCrop.getOutput(data);
+                imagedisplay.setImageURI(resulturi);
+            }
+        }
+    }
+
+
+
+    private void verify()
+    {
+
+        if (imageuri == null)
+        {
+            Toast.makeText(this, "Capture Image From Camera", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Handler handler = new Handler();
+
+        Runnable runnable = () ->
+        {
+            if (!Python.isStarted())
+            {
+                textView.setText(str);
+
+                Python.start(new AndroidPlatform(Fingerrecognition.this));
+            }
+            Python python = Python.getInstance();
+
+            if (image != null && localFile != null)
+            {
+
+                bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
+                imageString = getStringImage(bitmap);
+                bitmap1 = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                imageString1 = getStringImage(bitmap1);
+
+//                PyObject pyObject =python.getModule("FingerRecognitionScript");
+                PyObject pyObject =python.getModule("script");
+
+                PyObject obj =  pyObject.callAttr("main", imageString, imageString1);
+                textView.setText(obj.toString());
+                if (obj.toString().equals("verified"))
                 {
-                    imagedisplay.setImageURI(imageuri);
-                    Toast.makeText(this, (CharSequence) imageuri, Toast.LENGTH_SHORT).show();
+                    flag = 1;
                 }
             }
-        });
+
+        };
+
+
+        if (image == null && localFile == null)
+        {
+            Toast.makeText(Fingerrecognition.this, "Empty Image File", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Thread thread = new Thread(runnable);
+            thread.start();
+        }
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private void verify()
+    private void retriveimage()
     {
-        textView.setText(str);
-
-        if (!Python.isStarted())
-        {
-            Python.start(new AndroidPlatform(this));
+        try {
+            localFile = File.createTempFile("images", ".bmp");
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
-        Python python = Python.getInstance();
-
-        bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
-        imageString = getStringImage(bitmap);
-        PyObject pyObject =python.getModule("script");
-
-        PyObject obj =  pyObject.callAttr("main", imageString);
-
-        textView.setText(obj.toString());
-
+        File finalLocalFile = localFile;
+        storageRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+            uri = Uri.fromFile(finalLocalFile);
+            firebasedisplay.setImageURI(uri);
+        }).addOnFailureListener(e -> Toast.makeText(Fingerrecognition.this, "Error Downloading File", Toast.LENGTH_SHORT).show());
     }
 
 
@@ -116,8 +225,9 @@ public class Fingerrecognition extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,10,baos);
         byte[] imageBytes = baos.toByteArray();
-        String encode = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        encode = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encode;
+
     }
 
 
@@ -136,9 +246,7 @@ public class Fingerrecognition extends AppCompatActivity {
             Uri photoURI = FileProvider.getUriForFile(this, "com.example.fingerprintbasedvoting.fileprovider", photoFile);
             camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
             displayimage.launch(camera_intent);
-
         }
-
     }
 
     @Override
@@ -186,12 +294,19 @@ public class Fingerrecognition extends AppCompatActivity {
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         try {
             image = File.createTempFile(imageFileName, ".bmp", storageDir);
-            imageuri = Uri.parse(image.getAbsolutePath());
+            imageuri = Uri.fromFile(image);
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
         return image;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Fingerrecognition.this, votingsystem.class));
+        finish();
     }
 }

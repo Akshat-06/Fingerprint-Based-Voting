@@ -1,6 +1,5 @@
 package com.example.fingerprintbasedvoting;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -22,20 +21,12 @@ import java.util.Objects;
 
 public class signuppage extends AppCompatActivity
 {
-
     private EditText eml, pass, pass1, nme, adhr, phon;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
-    ProgressDialog progressDialog;
     Button registerButton;
     TextView loginButton;
-
-    @Override
-    protected void onStart() {
-
-        super.onStart();
-
-    }
+    CustomProgressBar prog_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +41,13 @@ public class signuppage extends AppCompatActivity
         adhr = findViewById(R.id.aadhar);
         phon = findViewById(R.id.pho);
 
-//        Button bck = findViewById(R.id.back);
-
         registerButton = findViewById(R.id.reg);
         loginButton = findViewById(R.id.logintext);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        progressDialog = new ProgressDialog(this);
+        prog_bar = new CustomProgressBar(signuppage.this);
 
         FirebaseApp.initializeApp(this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
@@ -136,7 +125,6 @@ public class signuppage extends AppCompatActivity
         {
             authenticate();
         }
-
     }
 
     private void authenticate(){
@@ -147,10 +135,7 @@ public class signuppage extends AppCompatActivity
         String aadhar = adhr.getText().toString();
         String phone = phon.getText().toString();
 
-        progressDialog.setTitle("Sing in");
-        progressDialog.setMessage("Plz wait");
-        progressDialog.show();
-
+        prog_bar.show();
         firebaseAuth.createUserWithEmailAndPassword(email, password).
                 addOnCompleteListener(this, task ->
                 {
@@ -171,8 +156,9 @@ public class signuppage extends AppCompatActivity
                                 startActivity(new Intent(signuppage.this, loginpage.class));
                                 finish();
                             }
-                            progressDialog.dismiss();
-                        }).addOnFailureListener(e -> Toast.makeText(signuppage.this, "something went wrong: " + e.getMessage(), Toast.LENGTH_LONG).show());
+//                            progressDialog.dismiss();
+                            prog_bar.cancel();
+                        }).addOnFailureListener(this, e -> Toast.makeText(signuppage.this, "something went wrong: " + e.getMessage(), Toast.LENGTH_LONG).show());
                     }
                     else
                     {
@@ -180,7 +166,8 @@ public class signuppage extends AppCompatActivity
                         Toast.makeText(signuppage.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                 Toast.LENGTH_LONG).show();
                     }
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
+                    prog_bar.cancel();
                 });
     }
 }
