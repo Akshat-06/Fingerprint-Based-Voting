@@ -2,19 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="100sp"
     android:layout_height="100sp"
-    android:background="@drawable/button"
+    android:background="@drawable/progressbar_background"
     >
 
     <com.github.ybq.android.spinkit.SpinKitView
-        android:layout_centerHorizontal="true"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.Large.ThreeBounce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        app:SpinKit_Color="@color/colorAccent"
-    />
+        app:SpinKit_Color="#b83939" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

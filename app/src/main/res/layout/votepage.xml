@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10sp"
+    android:gravity="center"
     >
 
     <TextView
@@ -17,9 +18,9 @@
 
 
     <LinearLayout
-        android:layout_marginTop="20sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
         android:orientation="vertical"
         android:padding="20sp">
 
@@ -31,54 +32,54 @@
             android:layout_marginTop="20sp">
 
             <RadioButton
+                android:id="@+id/cand_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
                 android:button="@drawable/radiocircle"
                 android:text="@string/candidate1"
-                android:id="@+id/cand_1"
                 android:textAlignment="center"
                 android:textSize="25sp" />
 
             <RadioButton
+                android:id="@+id/cand_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:button="@drawable/radiocircle"
                 android:text="@string/candidate2"
-                android:id="@+id/cand_2"
                 android:textAlignment="center"
                 android:textSize="25sp" />
 
             <RadioButton
+                android:id="@+id/cand_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:button="@drawable/radiocircle"
                 android:text="@string/candidate3"
-                android:id="@+id/cand_3"
                 android:textAlignment="center"
                 android:textSize="25sp" />
 
-<!--            <RadioButton-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="5sp"-->
-<!--                android:button="@drawable/radiocircle"-->
-<!--                android:text="@string/candidate4"-->
-<!--                android:id="@+id/cand_4"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textSize="25sp" />-->
+            <!--            <RadioButton-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="5sp"-->
+            <!--                android:button="@drawable/radiocircle"-->
+            <!--                android:text="@string/candidate4"-->
+            <!--                android:id="@+id/cand_4"-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:textSize="25sp" />-->
 
-<!--            <RadioButton-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="5sp"-->
-<!--                android:button="@drawable/radiocircle"-->
-<!--                android:text="@string/candidate5"-->
-<!--                android:id="@+id/cand_5"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textSize="25sp" />-->
+            <!--            <RadioButton-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="5sp"-->
+            <!--                android:button="@drawable/radiocircle"-->
+            <!--                android:text="@string/candidate5"-->
+            <!--                android:id="@+id/cand_5"-->
+            <!--                android:textAlignment="center"-->
+            <!--                android:textSize="25sp" />-->
 
         </RadioGroup>
 
@@ -88,8 +89,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
             android:background="@drawable/button"
-            android:textSize="20sp"
-            android:text="@string/submit_vote" />
+            android:text="@string/submit_vote"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

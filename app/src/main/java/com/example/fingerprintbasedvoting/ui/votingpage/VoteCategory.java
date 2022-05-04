@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fingerprintbasedvoting.R;
-import com.example.fingerprintbasedvoting.votepage;
+import com.example.fingerprintbasedvoting.Submitresult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,9 +41,9 @@ public class VoteCategory extends AppCompatActivity {
             String radiotext = rb.getText().toString();
 //            Toast.makeText(this, "Value" +radiotext, Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(this, votepage.class);
-            intent.putExtra("Candidates", radiotext);
-            startActivity(intent);
+            startActivity(new Intent(VoteCategory.this, Submitresult.class));
+//            Intent intent = new Intent(this, Votepage.class);
+//            startActivity(intent);
         }
     }
 

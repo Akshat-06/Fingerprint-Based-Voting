@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fingerprintbasedvoting.ui.Fingerrecognition;
 
-public class submitresult extends AppCompatActivity {
+public class Submitresult extends AppCompatActivity {
 
     BiometricPrompt.AuthenticationCallback authenticationCallback;
     @Override
@@ -29,13 +29,13 @@ public class submitresult extends AppCompatActivity {
             @Override
             public void onAuthenticationError(int errorCode, CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-                Toast.makeText(submitresult.this, "Authentication Error" + errString, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Submitresult.this, "Authentication Error" + errString, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Toast.makeText(submitresult.this, "Authentication Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Submitresult.this, "Authentication Success", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),Fingerrecognition.class));
                 finishAffinity();
             }
@@ -51,7 +51,7 @@ public class submitresult extends AppCompatActivity {
     {
         BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(getApplicationContext())
                 .setTitle("Verify Your Fingerprint")
-                .setNegativeButton("cancel", getMainExecutor(), (dialogInterface, i) -> Toast.makeText(submitresult.this, "Authentication Cancelled", Toast.LENGTH_SHORT)
+                .setNegativeButton("cancel", getMainExecutor(), (dialogInterface, i) -> Toast.makeText(Submitresult.this, "Authentication Cancelled", Toast.LENGTH_SHORT)
                         .show()).build();
 
         biometricPrompt.authenticate(

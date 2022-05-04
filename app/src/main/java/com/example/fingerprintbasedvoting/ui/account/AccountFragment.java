@@ -1,12 +1,15 @@
 package com.example.fingerprintbasedvoting.ui.account;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,11 +24,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class AccountFragment extends Fragment {
 
     private FragmentAccountBinding binding;
     private UserModel userModel;
+    ImageView fingerimage;
+    File localFile = null;
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Fingerprint Data/User/"+ FirebaseAuth.getInstance().getUid());
+    Uri uri;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -43,11 +55,10 @@ public class AccountFragment extends Fragment {
         TextView aadhar = view.findViewById(R.id.adharnoprofile);
         TextView phoneno = view.findViewById(R.id.phonenoprofile);
         TextView email = view.findViewById(R.id.emailprofile);
+        fingerimage = view.findViewById(R.id.accountfingerprintimage);
 
+        retriveimage();
         button.setOnClickListener(view1 -> Logout());
-
-
-
 
         String Uid = FirebaseAuth.getInstance().getUid();
         assert Uid != null;
@@ -90,4 +101,17 @@ public class AccountFragment extends Fragment {
         binding = null;
     }
 
+    private void retriveimage()
+    {
+        try {
+            localFile = File.createTempFile("images", ".bmp");
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        File finalLocalFile = localFile;
+        storageRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+            uri = Uri.fromFile(finalLocalFile);
+            fingerimage.setImageURI(uri);
+        }).addOnFailureListener(e -> Toast.makeText(getContext(), "Error Downloading File", Toast.LENGTH_SHORT).show());
+    }
 }

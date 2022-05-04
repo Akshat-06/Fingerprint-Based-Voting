@@ -9,10 +9,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +29,8 @@ import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 import com.example.fingerprintbasedvoting.CustomProgressBar;
 import com.example.fingerprintbasedvoting.R;
-import com.example.fingerprintbasedvoting.votingsystem;
+import com.example.fingerprintbasedvoting.Votepage;
+import com.example.fingerprintbasedvoting.Votingsystem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -40,7 +39,6 @@ import com.yalantis.ucrop.UCrop;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Fingerrecognition extends AppCompatActivity {
 
@@ -84,15 +82,11 @@ public class Fingerrecognition extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
 
-        confirm_voting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (flag == 1)
-                {
-                    startActivity(new Intent(Fingerrecognition.this, Verified.class));
-                    finishAffinity();
-                }
-            }
+        confirm_voting.setOnClickListener(view ->
+        {
+            Toast.makeText(this, "Verified Value" +flag, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Fingerrecognition.this, Verified.class));
+            finishAffinity();
         });
         retriveimage();
 
@@ -101,11 +95,6 @@ public class Fingerrecognition extends AppCompatActivity {
         camerabutton.setOnClickListener(view -> CameraImageCapture());
 
         verify.setOnClickListener(v -> verify());
-        String str = "working on verifying";
-        if (Objects.equals(textView, str))
-        {
-            startActivity(new Intent(Fingerrecognition.this,Verified.class));
-        }
 
         displayimage = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->
         {
@@ -128,10 +117,8 @@ public class Fingerrecognition extends AppCompatActivity {
 
         if (flag == 1)
         {
-            startActivity(new Intent(Fingerrecognition.this,Verified.class));
-        }
-        else {
-            Toast.makeText(this, "Flag:" +flag, Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(Fingerrecognition.this,Verified.class));
+            startActivity(new Intent(Fingerrecognition.this, Votepage.class));
         }
     }
 
@@ -160,8 +147,6 @@ public class Fingerrecognition extends AppCompatActivity {
             return;
         }
 
-        Handler handler = new Handler();
-
         Runnable runnable = () ->
         {
             if (!Python.isStarted())
@@ -184,11 +169,22 @@ public class Fingerrecognition extends AppCompatActivity {
                 PyObject pyObject =python.getModule("script");
 
                 PyObject obj =  pyObject.callAttr("main", imageString, imageString1);
-                textView.setText(obj.toString());
+
+        //                    String str = obj.toString();
+        //                    byte[] data = android.util.Base64.decode(str,Base64.DEFAULT);
+        //                    Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+
+        //                    resultimage.setImageBitmap(bmp);
                 if (obj.toString().equals("verified"))
                 {
                     flag = 1;
                 }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setText(obj.toString());
+                    }
+                });
             }
 
         };
@@ -221,13 +217,13 @@ public class Fingerrecognition extends AppCompatActivity {
     }
 
 
-    private String getStringImage(Bitmap bitmap) {
+    private String getStringImage(Bitmap bitmap)
+    {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,10,baos);
         byte[] imageBytes = baos.toByteArray();
         encode = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encode;
-
     }
 
 
@@ -306,7 +302,8 @@ public class Fingerrecognition extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(Fingerrecognition.this, votingsystem.class));
+        startActivity(new Intent(Fingerrecognition.this, Votingsystem.class));
         finish();
     }
+
 }

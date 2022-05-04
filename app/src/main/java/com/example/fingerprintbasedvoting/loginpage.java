@@ -56,7 +56,7 @@ public class loginpage extends AppCompatActivity {
             public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 Toast.makeText(loginpage.this, "Authentication Success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),votingsystem.class));
+                startActivity(new Intent(getApplicationContext(), Votingsystem.class));
                 finish();
             }
 
@@ -124,7 +124,7 @@ public class loginpage extends AppCompatActivity {
     }
 
     public void openSignup(){
-        startActivity(new Intent(getApplicationContext(),signuppage.class));
+        startActivity(new Intent(getApplicationContext(), Signuppage.class));
         finish();
     }
 

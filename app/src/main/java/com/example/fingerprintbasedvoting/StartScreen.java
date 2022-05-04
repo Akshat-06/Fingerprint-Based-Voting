@@ -18,7 +18,7 @@ public class StartScreen extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
-            startActivity(new Intent(getApplicationContext(), votingsystem.class));
+            startActivity(new Intent(getApplicationContext(), Instructions.class));
         }
         else
         {

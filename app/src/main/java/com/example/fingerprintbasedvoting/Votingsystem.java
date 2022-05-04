@@ -14,7 +14,7 @@ import com.example.fingerprintbasedvoting.databinding.ActivityVotingsystemBindin
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-public class votingsystem extends AppCompatActivity {
+public class Votingsystem extends AppCompatActivity {
 
     AppBarConfiguration mAppBarConfiguration;
     ActivityVotingsystemBinding binding;

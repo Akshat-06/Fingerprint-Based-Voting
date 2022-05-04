@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fingerprintbasedvoting.R;
-import com.example.fingerprintbasedvoting.votingsystem;
+import com.example.fingerprintbasedvoting.Votepage;
 
 public class Verified extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class Verified extends AppCompatActivity {
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             // Do something after 5s = 5000ms
-            startActivity(new Intent(Verified.this, votingsystem.class));
+            startActivity(new Intent(Verified.this, Votepage.class));
             finish();
         }, 5000);
 

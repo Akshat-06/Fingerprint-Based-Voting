@@ -4,7 +4,6 @@ import numpy as np
 
 
 def main(data, data1):
-
     decode_data = base64.b64decode(data)
     np_data = np.fromstring(decode_data, np.uint8)
     sample1 = cv2.imdecode(np_data, cv2.IMREAD_UNCHANGED)
@@ -21,29 +20,20 @@ def main(data, data1):
 
     best_score = 0
 
-    try:
+    # try:
+    for i in range(5):
         sift = cv2.SIFT_create()
 
         keypoints_1, descriptors_1 = sift.detectAndCompute(sample1, None)
         keypoints_2, descriptors_2 = sift.detectAndCompute(sample2, None)
 
-        matches1 = cv2.FlannBasedMatcher({'algorithm': 1, 'trees': 10}, {}).knnMatch(descriptors_1, descriptors_2, k=2)
-
-        bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck=False)
-
-        # Perform the matching between the SIFT descriptors of the training image and the test image
-        matches = bf.match(descriptors_1, descriptors_2)
-
-        # The matches with shorter distance are the ones we want.
-        matches = sorted(matches, key=lambda x: x.distance)
-        #
-        # mat = len(matches)
-        # print(mat)
+        matches1 = cv2.FlannBasedMatcher({'algorithm': 1, 'trees': 10}, {}).knnMatch(descriptors_1,
+                                                                                     descriptors_2, k=2)
 
         match_points = []
 
         for p, q in matches1:
-            if p.distance < 0.9*q.distance:
+            if p.distance < 0.5 * q.distance:
                 match_points.append([p])
                 print("for Loop")
 
@@ -54,14 +44,14 @@ def main(data, data1):
             keypoints = len(keypoints_2)
             print("Keypoint 2:" + str(keypoints))
 
-        if len(match_points)/keypoints*100 > 10:
-            best_score = len(match_points)/keypoints*100
-            print("Match Score:" + str(best_score))
+        if len(match_points) / keypoints * 100 > 0:
+            best_score = len(match_points) / keypoints * 100
+            print("Match Score1:" + str(best_score))
             print(len(match_points))
-            return "verified"
+            return "verified \n" + str(best_score)
         else:
             print(len(match_points))
             print("No Fingerprint Match Found")
             return "Not Verified"
-    except:
-        return "unable to detect fingerprint or insufficient memory"
+    # except:
+    #     return "unable to detect fingerprint or insufficient memory"

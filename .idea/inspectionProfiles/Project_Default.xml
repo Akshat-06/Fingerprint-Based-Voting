@@ -18,6 +18,7 @@
           <option value="base64" />
           <option value="numpy" />
           <option value="src.main.python.script.*" />
+          <option value="src.main.python.Fingery.*" />
         </list>
       </option>
     </inspection_tool>

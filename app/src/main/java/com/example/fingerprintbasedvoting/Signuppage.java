@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class signuppage extends AppCompatActivity
+public class Signuppage extends AppCompatActivity
 {
     private EditText eml, pass, pass1, nme, adhr, phon;
     private FirebaseAuth firebaseAuth;
@@ -47,7 +47,7 @@ public class signuppage extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        prog_bar = new CustomProgressBar(signuppage.this);
+        prog_bar = new CustomProgressBar(Signuppage.this);
 
         FirebaseApp.initializeApp(this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
@@ -152,18 +152,18 @@ public class signuppage extends AppCompatActivity
                         {
                             if (task1.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(signuppage.this, "Register success", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(signuppage.this, loginpage.class));
+                                Toast.makeText(Signuppage.this, "Register success", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(Signuppage.this, loginpage.class));
                                 finish();
                             }
 //                            progressDialog.dismiss();
                             prog_bar.cancel();
-                        }).addOnFailureListener(this, e -> Toast.makeText(signuppage.this, "something went wrong: " + e.getMessage(), Toast.LENGTH_LONG).show());
+                        }).addOnFailureListener(this, e -> Toast.makeText(Signuppage.this, "something went wrong: " + e.getMessage(), Toast.LENGTH_LONG).show());
                     }
                     else
                     {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(signuppage.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
+                        Toast.makeText(Signuppage.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                 Toast.LENGTH_LONG).show();
                     }
 //                    progressDialog.dismiss();

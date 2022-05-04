@@ -22,6 +22,7 @@ import androidx.core.content.FileProvider;
 
 import com.example.fingerprintbasedvoting.CustomProgressBar;
 import com.example.fingerprintbasedvoting.R;
+import com.example.fingerprintbasedvoting.Votingsystem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -174,9 +175,9 @@ public class Cam extends AppCompatActivity {
         {
             Toast.makeText(this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
             display_image_id = null;
-            finish();
-//            startActivity(new Intent(getApplicationContext(), Cam.class));
+            startActivity(new Intent(getApplicationContext(), Votingsystem.class));
             prog_bar.cancel();
+            finishAffinity();
         });
         uploadTask.addOnFailureListener(exception ->
         {
@@ -196,5 +197,11 @@ public class Cam extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        image.delete();
     }
 }

@@ -24,13 +24,12 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/fingerprint_based_voting"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-    android:theme="@style/Theme.FingerprintBasedVoting">
-
+        android:theme="@style/Theme.FingerprintBasedVoting">
         <activity
             android:name=".StartScreen"
             android:exported="true"
@@ -59,7 +58,7 @@
             android:noHistory="true"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
-            android:name=".votingsystem"
+            android:name=".Votingsystem"
             android:exported="false"
             android:label="@string/title_activity_votingsystem"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
@@ -67,13 +66,13 @@
             android:name=".loginpage"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
-            android:name=".signuppage"
+            android:name=".Signuppage"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
-            android:name=".submitresult"
+            android:name=".Submitresult"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
-            android:name=".votepage"
+            android:name=".Votepage"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
             android:name=".ui.Fingerrecognition"
@@ -84,13 +83,16 @@
         <activity
             android:name=".ui.votingpage.VoteCategory"
             android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
-        <activity android:name=".ui.Verified"
-            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
+        <activity
+            android:name=".ui.Verified"
+            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".Instructions"
+            android:theme="@style/Theme.FingerprintBasedVoting.NoActionBar"/>
     </application>
 
 </manifest>

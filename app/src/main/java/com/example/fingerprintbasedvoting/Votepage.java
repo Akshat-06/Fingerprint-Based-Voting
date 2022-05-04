@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-public class votepage extends AppCompatActivity {
+public class Votepage extends AppCompatActivity {
 
     RadioGroup radioGroup;
     RadioButton radioButton1, radioButton2, radioButton3;
@@ -57,10 +57,10 @@ public class votepage extends AppCompatActivity {
             String selectedText = r.getText().toString();
             Toast.makeText(this, "Selected:"+selectedText, Toast.LENGTH_SHORT).show();
             rDatabase.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(selectedText).addOnCompleteListener(task -> {
-                Toast.makeText(votepage.this, "voting Success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), submitresult.class));
+                Toast.makeText(Votepage.this, "voting Success", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), Votingsystem.class));
                 finish();
-            }).addOnFailureListener(e -> Toast.makeText(votepage.this, "Error in  Submitting Vote", Toast.LENGTH_LONG).show());
+            }).addOnFailureListener(e -> Toast.makeText(Votepage.this, "Error in  Submitting Vote", Toast.LENGTH_LONG).show());
         }
     }
 }

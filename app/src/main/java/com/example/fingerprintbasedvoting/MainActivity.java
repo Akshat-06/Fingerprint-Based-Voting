@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     void openSignup(){
-        startActivity(new Intent(getApplicationContext(),signuppage.class));
+        startActivity(new Intent(getApplicationContext(), Signuppage.class));
         finish();
     }
 
